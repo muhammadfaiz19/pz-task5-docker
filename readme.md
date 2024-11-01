@@ -9,8 +9,7 @@ register a new user
 
 ### POST auth/login
 login to the application
-![LOGO](https://github.com/muhammadfaiz19/pz-task4-mongodb/blob/main/
-src/img/login.png)
+![LOGO](https://github.com/muhammadfaiz19/pz-task4-mongodb/blob/main/src/img/login.png)
 
 ### POST /books
 create a new book

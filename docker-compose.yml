@@ -17,10 +17,10 @@ services:
 
   mongo:
     image: mongo:6
-    ports:
-      - "27017:27017"  # Uncomment this line if you want to access locally
+    # ports:
+    #   - "27017:27017"  # Uncomment this line if you want to access locally
     volumes:
-      - mongo-data:/data/db
+      - mongo-data:/data/db  # Use the named volume
     networks:
       - app-network
 
@@ -29,4 +29,4 @@ networks:
     driver: bridge
 
 volumes:
-  mongo-data:
+  mongo-data: 

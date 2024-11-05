@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --watch src --ext ts --exec ts-node src/app.ts",
-    "build": "tsc",
+    "dev": "nodemon src/app.ts",
     "start": "node dist/app.js",
+    "build": "tsc",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:all": "jest --watchAll --detectOpenHandles",
@@ -57,13 +57,9 @@
     "typescript": "^5.6.3"
   },
   "nodemonConfig": {
-    "watch": [
-      "src"
-    ],
+    "watch": ["src"],
     "ext": "ts,json",
-    "ignore": [
-      "src/**/*.test.ts"
-    ],
+    "ignore": ["src/**/*.test.ts"],
     "delay": "2"
   }
 }

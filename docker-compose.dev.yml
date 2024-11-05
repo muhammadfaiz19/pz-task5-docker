@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    build: 
+      context: .
+      target: development  # Use the development stage of the Dockerfile
+    volumes:
+      - .:/usr/src/app  # Mount current directory
+      - /usr/src/app/node_modules  # Volume for node_modules
+    environment:
+      - NODE_ENV=development
+      - MONGODB_URI=mongodb://mongodb:27017/dev
+    ports:
+      - "3000:3000"
+      - "9229:9229"  # For debugging
+    command: npm run dev
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_dev_data:/data/db
+
+volumes:
+  mongodb_dev_data:

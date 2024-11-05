@@ -8,6 +8,9 @@
     "start": "node dist/app.js",
     "test": "jest",
     "test:watch": "jest --watch",
+    "test:all": "jest --watchAll --detectOpenHandles",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "docker:build": "docker-compose build",
     "docker:up": "docker-compose up",
     "docker:down": "docker-compose down"
@@ -25,7 +28,9 @@
     "mongodb": "^6.10.0",
     "mongoose": "^8.8.0",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "morgan": "^1.10.0", 
+    "helmet": "^6.0.1"    
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
@@ -48,6 +53,13 @@
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "eslint": "^8.37.0" 
+  },
+  "nodemonConfig": {
+    "watch": ["src"],
+    "ext": "ts,json",
+    "ignore": ["src/**/*.test.ts"],
+    "delay": "2"
   }
 }

@@ -18,6 +18,8 @@ services:
     depends_on:
       - mongodb  # Ensure mongodb starts before app
     restart: unless-stopped
+    env_file:
+      - .env 
 
   mongodb:
     image: mongo:5.0

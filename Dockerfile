@@ -1,28 +1,27 @@
-# Dockerfile
-FROM node:18-alpine as base
-
+# Base stage
+FROM node:18-alpine AS base
 WORKDIR /usr/src/app
 
-# Development stage
-FROM base as development
-ENV NODE_ENV=development
-
+# Copy package files and install dependencies
 COPY package*.json ./
 RUN npm install
 
-# Copy source code
-COPY . .
-
-# Command untuk development dengan nodemon
+# Development stage
+FROM base AS development
+ENV NODE_ENV=development
+COPY . .  
 CMD ["npm", "run", "dev"]
 
+# Test stage
+FROM base AS test
+ENV NODE_ENV=test
+COPY . .  
+CMD ["npm", "test"]
+
 # Production stage
-FROM base as production
+FROM base AS production
 ENV NODE_ENV=production
-
 COPY package*.json ./
-RUN npm ci --only=production
-
-COPY . .
-
+RUN npm ci --only=production  
+COPY . .  
 CMD ["npm", "start"]

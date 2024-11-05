@@ -1,23 +1,29 @@
-# Gunakan image node sebagai base image
-FROM node:18
+FROM node:18-alpine as base
 
-# Set working directory dalam container
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Copy file package.json dan package-lock.json untuk instalasi dependencies
+# Development stage
+FROM base AS development
+ENV NODE_ENV=development
+
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
 
-# Copy seluruh source code ke container
+# Copy source code and build
 COPY . .
+RUN npm run build  # Compile TypeScript files
 
-# Compile TypeScript menjadi JavaScript
-RUN npm run build
+# Command for development with nodemon
+CMD ["npm", "run", "dev"]
 
-# Ekspose port yang akan digunakan oleh aplikasi
-EXPOSE 3500
+# Production stage
+FROM base AS production
+ENV NODE_ENV=production
 
-# Perintah untuk menjalankan aplikasi
-CMD ["npm", "run", "start"]
+COPY package*.json ./
+RUN npm ci --only=production
+
+# Copy compiled files from the development stage
+COPY --from=development /usr/src/app/dist ./dist
+
+CMD ["node", "dist/app.js"]  

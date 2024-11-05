@@ -11,9 +11,9 @@ on:
       - master
 
 env:
-  MONGODB_URI: mongodb://mongo:27017/test
+  MONGODB_URI: ${MONGODB_URI} 
   NODE_ENV: test
-  PORT: 3500
+  PORT: 4000
 
 jobs:
   build-and-test:

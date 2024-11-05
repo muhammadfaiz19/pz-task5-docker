@@ -10,21 +10,21 @@ services:
       - /usr/src/app/node_modules  # Volume for node_modules
     environment:
       - NODE_ENV=development
-      - MONGODB_URI=mongodb://mongodb:27017/dev
+      - MONGODB_URI=${MONGODB_URI}  # Use the .env variable for MongoDB URI
     ports:
-      - "3000:3000"
-      - "9229:9229"  # For debugging
-    command: npm run dev
+      - "3000:3000"  # Port for the app
+      - "9229:9229"  # Port for debugging
+    command: npm run dev  # Run the development command
     depends_on:
-      - mongodb
+      - mongodb  # Ensure mongodb starts before app
     restart: unless-stopped
 
   mongodb:
     image: mongo:5.0
     ports:
-      - "27017:27017"
+      - "27017:27017"  # Port for MongoDB
     volumes:
-      - mongodb_dev_data:/data/db
+      - mongodb_data:/data/db  # Use a named volume to persist data
 
 volumes:
-  mongodb_dev_data:
+  mongodb_data:  # Named volume for MongoDB data

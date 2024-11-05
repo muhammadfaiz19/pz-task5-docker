@@ -11,7 +11,7 @@ import authRoutes from "./routes/auth.routes";
 // Load environment variables from .env file
 dotenv.config();
 
-const app = express();
+export const app = express();
 
 // Middleware
 app.use(bodyParser.json());

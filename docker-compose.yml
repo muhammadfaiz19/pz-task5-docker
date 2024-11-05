@@ -2,25 +2,27 @@ version: '3.8'
 
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "4000:4000"  
+      - "4000:4000"
     environment:
       - NODE_ENV=production
       - MONGODB_URI=${MONGODB_URI} 
     depends_on:
-      - mongodb
-    restart: unless-stopped
+      - mongo
     networks:
       - app-network
     env_file:
-      - .env 
-  mongodb:
-    image: mongo:5.0
+      - .env  
+
+  mongo:
+    image: mongo:6
     ports:
-      - "27017:27017"
+      - "27017:27017"  # Uncomment this line if you want to access locally
     volumes:
-      - mongodb_data:/data/db
+      - mongo-data:/data/db
     networks:
       - app-network
 
@@ -29,4 +31,4 @@ networks:
     driver: bridge
 
 volumes:
-  mongodb_data:
+  mongo-data:

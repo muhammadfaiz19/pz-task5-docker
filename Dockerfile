@@ -1,27 +1,23 @@
-# Base stage
-FROM node:18-alpine AS base
-WORKDIR /usr/src/app
+# Gunakan image node sebagai base image
+FROM node:18
 
-# Copy package files and install dependencies
+# Set working directory dalam container
+WORKDIR /app
+
+# Copy file package.json dan package-lock.json untuk instalasi dependencies
 COPY package*.json ./
+
+# Install dependencies
 RUN npm install
 
-# Development stage
-FROM base AS development
-ENV NODE_ENV=development
-COPY . .  
-CMD ["npm", "run", "dev"]
+# Copy seluruh source code ke container
+COPY . .
 
-# Test stage
-FROM base AS test
-ENV NODE_ENV=test
-COPY . .  
-CMD ["npm", "test"]
+# Compile TypeScript menjadi JavaScript
+RUN npm run build
 
-# Production stage
-FROM base AS production
-ENV NODE_ENV=production
-COPY package*.json ./
-RUN npm ci --only=production  
-COPY . .  
-CMD ["npm", "start"]
+# Ekspose port yang akan digunakan oleh aplikasi
+EXPOSE 3500
+
+# Perintah untuk menjalankan aplikasi
+CMD ["npm", "run", "start"]

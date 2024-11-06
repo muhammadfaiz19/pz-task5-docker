@@ -42,15 +42,15 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t your_dockerhub_username/pz-task5-docker .
+        run: docker build -t muhammadfaiz19/pz-task5-docker .
 
       - name: Push Docker image to Docker Hub
-        run: docker push your_dockerhub_username/pz-task5-docker
+        run: docker push muhammadfaiz19/pz-task5-docker
 
       - name: Deploy
         run: |
-          docker pull your_dockerhub_username/pz-task5-docker
+          docker pull muhammadfaiz19/pz-task5-docker
           docker stop pz-task5-docker || true
           docker rm pz-task5-docker || true
-          docker run -d --env-file .env -p 4000:4000 --name pz-task5-docker your_dockerhub_username/pz-task5-docker
+          docker run -d --env-file .env -p 4000:4000 --name pz-task5-docker muhammadfaiz19/pz-task5-docker
 

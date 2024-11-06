@@ -1,35 +1,15 @@
-# Task4 - ProductZilla - Express JS, MongoDB, Swagger
+# Task5 - ProductZilla - Unit Testing, CI/CD Introduction and Docker
+![Build Status](https://github.com/muhammadfaiz19/pz-task5-docker/actions/workflows/main.yml/badge.svg)
 
-### Swagger API Documentation
-![LOGO](https://github.com/muhammadfaiz19/pz-task4-mongodb/blob/main/src/img/swagger-documentation.png)
+### Unit Testing
+![LOGO](https://github.com/muhammadfaiz19/pz-task5-docker/blob/main/src/img/testing.png)
 
-### POST auth/register
-register a new user
-![LOGO](https://github.com/muhammadfaiz19/pz-task4-mongodb/blob/main/src/img/register.png)
+### CI/CD 
+![Build Status](https://github.com/muhammadfaiz19/pz-task5-docker/actions/workflows/main.yml/badge.svg)
+![LOGO](https://github.com/muhammadfaiz19/pz-task5-docker/blob/main/src/img/ci-cd.png)
 
-### POST auth/login
-login to the application
-![LOGO](https://github.com/muhammadfaiz19/pz-task4-mongodb/blob/main/src/img/login.png)
-
-### POST /books
-create a new book
-![LOGO](https://github.com/muhammadfaiz19/pz-task4-mongodb/blob/main/src/img/create-book.png)
-
-### GET /books
-retrieve all books
-![LOGO](https://github.com/muhammadfaiz19/pz-task4-mongodb/blob/main/src/img/get-all-books.png)
-
-### GET /books/{id}
-retrieve a book by id
-![LOGO](https://github.com/muhammadfaiz19/pz-task4-mongodb/blob/main/src/img/get-all-books.png)
-
-### PUT /books/{id}
-update a book by id
-![LOGO](https://github.com/muhammadfaiz19/pz-task4-mongodb/blob/main/src/img/update-book.png)
-
-### DELETE /books/{id}
-delete a book by id
-![LOGO](https://github.com/muhammadfaiz19/pz-task4-mongodb/blob/main/src/img/delete-book.png)
-
+### Docker
+![LOGO](https://github.com/muhammadfaiz19/pz-task5-docker/blob/main/src/img/docker.png)
+![LOGO](https://github.com/muhammadfaiz19/pz-task5-docker/blob/main/src/img/docker-compose-test.png)
 
 

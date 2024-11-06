@@ -1,29 +1,20 @@
-FROM node:18-alpine as base
+# Use Node.js LTS version with Alpine
+FROM node:18
 
-WORKDIR /usr/src/app
+# Set working directory
+WORKDIR /app
 
-# Development stage
-FROM base AS development
-ENV NODE_ENV=development
-
+# Copy package files
 COPY package*.json ./
-RUN npm install
 
-# Copy source code and build
+# Install dependencies
+RUN npm ci
+
+# Copy application source code
 COPY . .
-RUN npm run build  # Compile TypeScript files
 
-# Command for development with nodemon
-CMD ["npm", "run", "dev"]
+# Expose port 3000
+EXPOSE 3000
 
-# Production stage
-FROM base AS production
-ENV NODE_ENV=production
-
-COPY package*.json ./
-RUN npm ci --only=production
-
-# Copy compiled files from the development stage
-COPY --from=development /usr/src/app/dist ./dist
-
-CMD ["node", "dist/app.js"]  
+# Command to run the application
+CMD ["npm", "start"]

@@ -1,33 +1,27 @@
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     ports:
-      - "3500:3500"
-    environment:
-      - NODE_ENV=production
-      - MONGODB_URI=mongodb://mongo:27017/test
-    depends_on:
-      - mongo
-    networks:
-      - app-network
+      - "3000:3000"
     env_file:
-      - .env  
-
-  mongo:
-    image: mongo:4.4  
-    # ports:
-    #   - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
+      - .env
+    depends_on:
+      - mongodb
+    restart: unless-stopped
     networks:
       - app-network
-
-
+    platform: linux/amd64
+  mongodb:
+    image: mongo:5.0
+    platform: linux/amd64
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - app-network
 networks:
   app-network:
     driver: bridge
-
 volumes:
-  mongo-data: 
+  mongodb_data:
